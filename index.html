@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>Firebaseサンプル1</title>
+  </head>
+  <body>
+    <div>
+      <input id="name" placeholder="名前" />
+      <input id="message" placeholder="メッセージ" />
+      <button id="send">投稿</button>
+    </div>
+    <ul id="messages">
+    </ul>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+    <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+    <script>
+      // データベースの参照を準備
+      var firebaseRef = new Firebase("https://my-first-chat-app.firebaseio.com"); // ... 1
+      var messagesRef = firebaseRef.child('messages'); // ... 2
+
+      // 既存メッセージを表示
+      messagesRef.on('child_added', function(snapshot) { // ... 3
+        var msg = snapshot.val();
+        $('<li>').text(msg.name + ': ' + msg.body).prependTo('#messages');
+      });
+
+      $('#send').click(function() {
+        // 新規メッセージを投稿
+        messagesRef.push({ // ... 4
+          name: $('#name').val(),
+          body: $('#message').val()
+        });
+      });
+    </script>
+  </body>
+</html>
