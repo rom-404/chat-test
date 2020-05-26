@@ -40,10 +40,14 @@
     <script src="/__/firebase/6.2.0/firebase-firestore.js"></script>
     <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
     <script>
-      firebase.auth().signInWithRedirect(provider);
+      
       // データベースの参照を準備
       var firebaseRef = new Firebase("https://test-chat-fc6a9.firebaseio.com/"); // ... 1
       var provider = new firebase.auth.GoogleAuthProvider();
+      var provider = new firebase.auth.GoogleAuthProvider();
+      register.addEventListener('click', function(e) {
+        firebase.auth().signInWithRedirect(provider);
+      }
 
 
   
