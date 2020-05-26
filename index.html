@@ -2,7 +2,7 @@
 <html lang="ja">
   <head>
     <meta charset="utf-8" />
-    <title>chat-test1</title>
+    <title>chat-test2</title>
   </head>
   <body>
     <button id="login">ログイン</button>
@@ -39,11 +39,11 @@
       // データベースの参照を準備
       var firebaseRef = new Firebase("https://test-chat-fc6a9.firebaseio.com/"); // ... 1
       
-      register.addEventListener('click', function(e) {
+      $('#register').on('click', function() {
         var provider = new firebase.auth.GoogleAuthProvider();
         firebase.auth().signInWithRedirect(provider);
-        alert('test');
-      }
+        alert("クリックされました");
+      });
 
 
   
