@@ -5,6 +5,8 @@
     <title>chat-test</title>
   </head>
   <body>
+    <button class="authBtn" disabled></button>
+<span class="userId"></span>
     <div>
       <input id="name" placeholder="名前" />
       <input id="message" placeholder="メッセージ" />
@@ -21,21 +23,62 @@
       firebase.auth().signInWithRedirect(provider);
       // データベースの参照を準備
       var firebaseRef = new Firebase("https://test-chat-fc6a9.firebaseio.com/"); // ... 1
-      var messagesRef = firebaseRef.child('messages'); // ... 2
- 
-      // 既存メッセージを表示
-      messagesRef.on('child_added', function(snapshot) { // ... 3
-        var msg = snapshot.val();
-        $('<li>').text(msg.name + ': ' + msg.body).prependTo('#messages');
+      var AuthUI = {
+  init: function(){
+    AuthUI.provider = new firebase.auth.GoogleAuthProvider();
+    AuthUI.elAuthBtn = document.querySelector('.authBtn');
+    AuthUI.elUserId = document.querySelector('.userId');
+    AuthUI.draw();
+    AuthUI.elAuthBtn.addEventListener('click', function(){
+      AuthUI.doAuth();
+    });
+    firebase.auth().getRedirectResult().then(function(result) {
+      AuthUI.elAuthBtn.disabled = false;
+      if (result.credential) {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        var token = result.credential.accessToken;
+      }
+      if(result.user){
+        AuthUI.data.authed = true;
+        AuthUI.data.userId = result.user.email;
+        AuthUI.draw();
+      }
+    }).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // The email of the user's account used.
+      var email = error.email;
+      // The firebase.auth.AuthCredential type that was used.
+      var credential = error.credential;
+      // ...
+    });
+  },
+  data: {
+    authed: false,
+    userId: '',
+    info: ''
+  },
+  draw: function(){
+    AuthUI.elAuthBtn.textContent = AuthUI.data.authed ? 'LOGOUT' : 'LOGIN';
+    AuthUI.elUserId.textContent = AuthUI.data.userId;
+  },
+  doAuth: function(){
+    if(AuthUI.data.authed){
+      firebase.auth().signOut().then(function() {
+        AuthUI.data.authed = false;
+        AuthUI.data.userId = '';
+        AuthUI.draw();
+      }, function(error) {
+        // An error happened.
       });
- 
-      $('#send').click(function() {
-        // 新規メッセージを投稿
-        messagesRef.push({ // ... 4
-          name: $('#name').val(),
-          body: $('#message').val()
-        });
-      });
+    }
+    else {
+      firebase.auth().signInWithRedirect(AuthUI.provider);
+    }
+  }
+};
+AuthUI.init();
     </script>
   </body>
 </html>
