@@ -14,32 +14,26 @@
     <ul id="messages">
     </ul>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-auth.js"></script>
-
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-
-<script>
-  // Your web app's Firebase configuration
-  var firebaseConfig = {
-    apiKey: "AIzaSyAU3qHzRegfyKryPIOQl5Rf7UZBnmNOYMo",
-    authDomain: "test-chat-fc6a9.firebaseapp.com",
-    databaseURL: "https://test-chat-fc6a9.firebaseio.com",
-    projectId: "test-chat-fc6a9",
-    storageBucket: "test-chat-fc6a9.appspot.com",
-    messagingSenderId: "984360731199",
-    appId: "1:984360731199:web:f948bd42d708fb76baee8a"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-</script>
-　　<script>
-    var provider = new firebase.auth.GoogleAuthProvider();
-    $('#register').click(function() {
-        firebase.auth().signInWithRedirect(provider);
-    })
+    <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+    <script>
+      // データベースの参照を準備
+      var firebaseRef = new Firebase("https://test-chat-fc6a9.firebaseio.com/"); // ... 1
+      var messagesRef = firebaseRef.child('messages'); // ... 2
+ 
+      // 既存メッセージを表示
+      messagesRef.on('child_added', function(snapshot) { // ... 3
+        var msg = snapshot.val();
+        $('<li>').text(msg.name + ': ' + msg.body).prependTo('#messages');
+      });
+ 
+      $('#send').click(function() {
+        // 新規メッセージを投稿
+        messagesRef.push({ // ... 4
+          name: $('#name').val(),
+          body: $('#message').val()
+        });
+      });
     </script>
+　　
   </body>
 </html>
