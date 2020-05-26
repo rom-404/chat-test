@@ -42,6 +42,7 @@
       register.addEventListener('click', function(e) {
         var provider = new firebase.auth.GoogleAuthProvider();
         firebase.auth().signInWithRedirect(provider);
+        alert('test');
       }
 
 
