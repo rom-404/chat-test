@@ -14,7 +14,7 @@
     </div>
     <ul id="messages">
     </ul>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
     <!-- The core Firebase JS SDK is always required and must be listed first -->
   <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase-auth.js"></script>
@@ -41,7 +41,7 @@
       // データベースの参照を準備
       var firebaseRef = new Firebase("https://test-chat-fc6a9.firebaseio.com/"); // ... 1
       
-      $('#register').on('click', function() {
+      $('#register').click(function() {
         var provider = new firebase.auth.GoogleAuthProvider();
         firebase.auth().signInWithRedirect(provider);
         alert("クリックされました");
