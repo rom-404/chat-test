@@ -5,7 +5,7 @@
     <title>chat-test3</title>
   </head>
   <body>
-    <button id=register>新規登録</button>
+    <button id=login>新規登録</button>
     <div>
       <input id="name" placeholder="名前" />
       <input id="message" placeholder="メッセージ" />
@@ -38,6 +38,7 @@
     <script>
       // データベースの参照を準備
       var messagesRef = firebase.database().ref().child('massages') // ... 2
+      var provider = new firebase.auth.GoogleAuthProvider();
  
       // 既存メッセージを表示
       messagesRef.on('child_added', function(snapshot) { // ... 3
@@ -51,6 +52,9 @@
           name: $('#name').val(),
           body: $('#message').val()
         });
+      });
+      $('#login').click(function() {
+        firebase.auth().signInWithRedirect(provider);
       });
     </script>
 　　
