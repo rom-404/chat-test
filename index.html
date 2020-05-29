@@ -40,9 +40,7 @@
     <script>
       // データベースの参照を準備
       var messagesRef = firebase.database().ref().child('massages');// ... 2
-      var provider = new firebase.auth.GoogleAuthProvider();
-      
-      var provider = new firebase.auth.GoogleAuthProvider();
+      var provider = new firebase.auth().GoogleAuthProvider();
 
       provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
 
