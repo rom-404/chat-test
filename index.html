@@ -44,7 +44,7 @@
       var messagesRef = firebase.database().ref().child('massages');// ... 2
       var provider = new firebase.auth.GoogleAuthProvider();
       var user = firebase.auth().currentUser;
-      $('#name).val(user.displayName);
+      $('#name').val(user.displayName);
       
  
       // 既存メッセージを表示
