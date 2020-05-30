@@ -64,7 +64,7 @@
         // 新規メッセージを投稿
         messagesRef.push({ // ... 4
           name: $('#name').val(),
-          body: $('#message').().replace(/\n/g, '<br>')
+          body: $('#message').val().replace(/\n/g, '<br>')
         });
       });
       $('#login').click(function() {
