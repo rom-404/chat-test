@@ -7,7 +7,7 @@
   <body>
     <button id="login">googleアカウントで参加</button>
     <div>
-      <span id="name"></span>
+      <h3 id="name"></h3>
       <input id="message" placeholder="メッセージ" />
       <button id="send">投稿</button>
     </div>
@@ -43,11 +43,15 @@
       var messagesRef = firebase.database().ref().child('massages');// ... 2
       var provider = new firebase.auth.GoogleAuthProvider();
       var user = firebase.auth().currentUser;
+      $("#send").hide();
+      $("#message").hide();
 
       firebase.auth().getRedirectResult().then(function(result) {
         var user=result.user;
         $("#name").text(user.displayName);
         $("#login").hide();
+        $("#send").show();
+        $("#message").show();
       });
  
       // 既存メッセージを表示
