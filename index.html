@@ -56,7 +56,7 @@
  
       // 既存メッセージを表示
       messagesRef.on('child_added', function(snapshot) { // ... 3
-        var msg = snapshot.val();
+        var msg = snapshot.text();
         $('<li>').text(msg.name + ': ' + msg.body).prependTo('#messages');
       });
  
@@ -64,7 +64,7 @@
         // 新規メッセージを投稿
         messagesRef.push({ // ... 4
           name: $('#name').text(),
-          body: $('#message').val()
+          body: $('#message').text()
         });
       });
       $('#login').click(function() {
