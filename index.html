@@ -43,6 +43,8 @@
       // データベースの参照を準備
       var messagesRef = firebase.database().ref().child('massages');// ... 2
       var provider = new firebase.auth.GoogleAuthProvider();
+      var user = firebase.auth().currentUser;
+      $('#name).val(user.displayName);
       
  
       // 既存メッセージを表示
@@ -60,8 +62,6 @@
       });
       $('#login').click(function() {
         firebase.auth().signInWithRedirect(provider);
-        var user = firebase.auth().currentUser;
-        $('#login').hide();
       });
       
     </script>
