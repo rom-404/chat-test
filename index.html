@@ -5,8 +5,7 @@
     <title>chat-test3</title>
   </head>
   <body>
-    <div id="login"></div>
-    <div id="loader">loading</div>
+    <button id="login">googleアカウントで参加</button>
     <div>
       <input id="name" placeholder="名前" />
       <input id="message" placeholder="メッセージ" />
@@ -21,8 +20,6 @@
     <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-database.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
     
-    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
-<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
 <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
 
@@ -45,8 +42,6 @@
       // データベースの参照を準備
       var messagesRef = firebase.database().ref().child('massages');// ... 2
       var provider = new firebase.auth.GoogleAuthProvider();
-      // Initialize the FirebaseUI Widget using Firebase.
-      var ui = new firebaseui.auth.AuthUI(firebase.auth());
  
       // 既存メッセージを表示
       messagesRef.on('child_added', function(snapshot) { // ... 3
@@ -61,31 +56,10 @@
           body: $('#message').val()
         });
       });
+      $('#login').click(function() {
+        firebase.auth().signInWithRedirect(provider);
+      }); 
       
-      var uiConfig = {
-  callbacks: {
-    signInSuccessWithAuthResult: function(authResult, redirectUrl) {
-      // User successfully signed in.
-      // Return type determines whether we continue the redirect automatically
-      // or whether we leave that to developer to handle.
-      return true;
-    },
-    uiShown: function() {
-      // The widget is rendered.
-      // Hide the loader.
-      document.getElementById('loader').style.display = 'none';
-    }
-  },
-  // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
-  signInFlow: 'redirect',
-  signInSuccessUrl: '<https://rom-404.github.io/chat-test/>',
-  signInOptions: [
-    // Leave the lines as is for the providers you want to offer your users.
-    firebase.auth.GoogleAuthProvider.PROVIDER_ID
-  ],
-};
-      // The start method will wait until the DOM is loaded.
-ui.start('#login', uiConfig);
     </script>
 　　
   </body>
