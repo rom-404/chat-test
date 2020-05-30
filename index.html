@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>chat-test3</title>
+  </head>
+  <body>
+    <div id="login"></div>
+    <div id="loader">loading</div>
+    <div>
+      <input id="name" placeholder="名前" />
+      <input id="message" placeholder="メッセージ" />
+      <button id="send">投稿</button>
+    </div>
+    <ul id="messages">
+    </ul>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-database.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+    
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+  apiKey: "AIzaSyBubKW_24RpF8xLr09KyH1mQ-ZQoukJHrg",
+  authDomain: "test-chat-fcfd6.firebaseapp.com",
+  databaseURL: "https://test-chat-fcfd6.firebaseio.com",
+  projectId: "test-chat-fcfd6",
+  storageBucket: "test-chat-fcfd6.appspot.com",
+  messagingSenderId: "205930384510",
+  appId: "1:205930384510:web:205a6bb18fc53559d19c2f"
+};
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+    
+    <script>
+      // データベースの参照を準備
+      var messagesRef = firebase.database().ref().child('massages');// ... 2
+      var provider = new firebase.auth.GoogleAuthProvider();
+      // Initialize the FirebaseUI Widget using Firebase.
+      var ui = new firebaseui.auth.AuthUI(firebase.auth());
+ 
+      // 既存メッセージを表示
+      messagesRef.on('child_added', function(snapshot) { // ... 3
+        var msg = snapshot.val();
+        $('<li>').text(msg.name + ': ' + msg.body).prependTo('#messages');
+      });
+ 
+      $('#send').click(function() {
+        // 新規メッセージを投稿
+        messagesRef.push({ // ... 4
+          name: $('#name').val(),
+          body: $('#message').val()
+        });
+      });
+      
+      var uiConfig = {
+  callbacks: {
+    signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+      // User successfully signed in.
+      // Return type determines whether we continue the redirect automatically
+      // or whether we leave that to developer to handle.
+      return true;
+    },
+    uiShown: function() {
+      // The widget is rendered.
+      // Hide the loader.
+      document.getElementById('loader').style.display = 'none';
+    }
+  },
+  // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
+  signInFlow: 'redirect',
+  signInSuccessUrl: '<https://rom-404.github.io/chat-test/>',
+  signInOptions: [
+    // Leave the lines as is for the providers you want to offer your users.
+    firebase.auth.GoogleAuthProvider.PROVIDER_ID
+  ],
+};
+      // The start method will wait until the DOM is loaded.
+ui.start('#login', uiConfig);
+    </script>
+　　
+  </body>
+</html>
