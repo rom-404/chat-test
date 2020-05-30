@@ -61,7 +61,7 @@
       $('#login').click(function() {
         firebase.auth().signInWithRedirect(provider);
         var user = firebase.auth().currentUser;
-        $('#username').text(user.email);
+        $('#username').text(user.name);
       });
       
     </script>
