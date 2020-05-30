@@ -57,14 +57,14 @@
       // 既存メッセージを表示
       messagesRef.on('child_added', function(snapshot) { // ... 3
         var msg = snapshot.val();
-        $('<li>').text(msg.name + ': ' + msg.body).prependTo('#messages');
+        $('<li>').text(msg.name + ': ' + msg.body.replace(/\n/g, '<br>')).prependTo('#messages');
       });
  
       $('#send').click(function() {
         // 新規メッセージを投稿
         messagesRef.push({ // ... 4
           name: $('#name').val(),
-          body: $('#message').val().replace(/\n/g, '<br>')
+          body: $('#message').val()
         });
       });
       $('#login').click(function() {
