@@ -6,7 +6,6 @@
   </head>
   <body>
     <button id="login">googleアカウントで参加</button>
-    <p id="username"><p>
     <div>
       <input id="name" placeholder="名前" />
       <input id="message" placeholder="メッセージ" />
@@ -60,8 +59,6 @@
       });
       $('#login').click(function() {
         firebase.auth().signInWithRedirect(provider);
-        var user = firebase.auth().currentUser;
-        $('#username').text(user.displayName);
       });
       
     </script>
