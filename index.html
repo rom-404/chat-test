@@ -48,7 +48,7 @@
 
       firebase.auth().getRedirectResult().then(function(result) {
         var user=result.user;
-        $("#name").text(user.displayName);
+        $("#name").val(user.displayName);
         $("#login").hide();
         $("#send").show();
         $("#message").show();
@@ -57,7 +57,7 @@
       // 既存メッセージを表示
       messagesRef.on('child_added', function(snapshot) { // ... 3
         var msg = snapshot.val();
-        $('<li>').text(msg.name + ': ' + msg.body.replace(/\n/g, '<br>')).prependTo('#messages');
+        $('<li>').text(msg.name + ': ' + msg.body).prependTo('#messages');
       });
  
       $('#send').click(function() {
