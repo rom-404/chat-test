@@ -57,7 +57,7 @@
       // 既存メッセージを表示
       messagesRef.on('child_added', function(snapshot) { // ... 3
         var msg = snapshot.val();
-        $('<li>').html(msg.name + ':<br>' + msg.body.replace(/\n/g, '<br>')).prependTo('#messages');
+        $('<li>').html(msg.name + ':<br>' + msg.body.replace(/\n/g, '<br>')+"<br>").prependTo('#messages');
       });
  
       $('#send').click(function() {
