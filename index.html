@@ -44,12 +44,14 @@
       var provider = new firebase.auth.GoogleAuthProvider();
       var user = firebase.auth().currentUser;
       var myname;
+      var myimage;
       $("#send").hide();
       $("#message").hide();
 
       firebase.auth().getRedirectResult().then(function(result) {
         var user=result.user;
         myname = user.displayName;
+        myimage = user.photoURL.replace("_normal","");
         $("#login").hide();
         $("#send").show();
         $("#message").show();
@@ -65,7 +67,8 @@
         // 新規メッセージを投稿
         messagesRef.push({ // ... 4
           name: myname,
-          body: $('#message').val()
+          body: $('#message').val(),
+          image: myimage
         });
       });
       $('#login').click(function() {
