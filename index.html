@@ -58,7 +58,7 @@
       // 既存メッセージを表示
       messagesRef.on('child_added', function(snapshot) { // ... 3
         var msg = snapshot.val();
-        $('<div class="balloon_l"></div>').html('<div class="faceicon"><img src="https://stand-4u.com/stand-4u/wp-content/uploads/2019/09/s4man.png" alt="" ></div><p class="says">${msg.body.replace(/\n/g, "<br>")}</p>').prependTo('#messages');
+        $('<div class="balloon_l"></div>').html('<div class="faceicon"><img src="" alt="" ></div><p class="says">' + msg.body.replace(/\n/g, "<br>") + '</p>').prependTo('#messages');
       });
  
       $('#send').click(function() {
