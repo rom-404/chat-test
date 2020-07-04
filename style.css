@@ -1,63 +1,83 @@
-/*吹き出し*/
-.balloon_l,
-.balloon_r{
-  margin: 30px 0;
-  display:flex;
-  justify-content: flex-start;
-  align-items: flex-start; /*縦位置を上揃え*/
-/*   align-items: center; */ /*縦位置を真ん中揃え*/
+.line-bc {
+  padding: 20px 10px;
+  max-width: 450px;
+  margin: 15px auto;
+  text-align: right;
+  font-size: 14px;
+  background: #7da4cd;
+
 }
-.balloon_r{
-  justify-content:flex-end;
-}
-.faceicon img{
+
+/*以下、②左側のコメント*/
+.balloon6 {
   width: 100%;
-  max-width: 80px;
-  top: 0;
+  margin: 10px 0;
+  overflow: hidden;
 }
-.balloon_r .faceicon{
-  display: inline-block;
-  right: 0;
-  padding-left: 30px;
+
+.balloon6 .faceicon {
+  float: left;
+  margin-right: -50px;
+  width: 40px;
 }
-.balloon_l .faceicon{
-  display: inline-block;
-  left: 0;
-  padding-right: 30px;
+
+.balloon6 .faceicon img{
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
 }
-.balloon_r .faceicon{
-  order:2 !important;
+.balloon6 .chatting {
+  width: 100%;
+  text-align: left;
 }
 .says {
   display: inline-block;
-  max-width:500px; /*最大幅は任意*/
-  flex-wrap: wrap;
-  position: relative;
-  padding: 17px 13px 15px 18px;
+  position: relative; 
+  margin: 0 0 0 50px;
+  padding: 10px;
+  max-width: 250px;
   border-radius: 12px;
-  background: #99dddd;/*色は任意*/
-  box-sizing:border-box;
-  margin:0 !important;
-  line-height:1.5;
-/*   align-items: center; */
+  background: #edf1ee;
 }
-.says p{
-  margin:8px 0 0 !important; 
-}
-.says p:first-child{
-  margin-top:0 !important;
-}
+
 .says:after {
   content: "";
+  display: inline-block;
   position: absolute;
-  border: 10px solid transparent;
-/*   margin-top:-3px;  */
+  top: 3px; 
+  left: -19px;
+  border: 8px solid transparent;
+  border-right: 18px solid #edf1ee;
+  -webkit-transform: rotate(35deg);
+  transform: rotate(35deg);
 }
-.balloon_l .says:after {
-  left: -26px;
-  border-right: 22px solid #99dddd;
+.says p {
+  margin: 0;
+  padding: 0;
 }
-.balloon_r .says:after {
-  right: -26px;
-  border-left: 22px solid #99dddd;
+
+/*以下、③右側の緑コメント*/
+.mycomment {
+  margin: 10px 0;
+}
+.mycomment p {
+  display: inline-block;
+  position: relative; 
+  margin: 0 10px 0 0;
+  padding: 8px;
+  max-width: 250px;
+  border-radius: 12px;
+  background: #30e852;
+  font-size: 15px:
+}
+
+.mycomment p:after {
+  content: "";
+  position: absolute;
+  top: 3px; 
+  right: -19px;
+  border: 8px solid transparent;
+  border-left: 18px solid #30e852;
+  -webkit-transform: rotate(-35deg);
+  transform: rotate(-35deg);
 }
