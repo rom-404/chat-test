@@ -11,14 +11,18 @@
   justify-content:flex-end;
 }
 .faceicon img{
-  width: 80px; /*任意のサイズ*/
-  height: auto;
+  width: 100%;
+  max-width: 80px;
+  position: absolute;
+  top: 0;
 }
 .balloon_r .faceicon{
-  margin-left:25px;
+  right: 0;
+  padding-left: 30px;
 }
 .balloon_l .faceicon{
-  margin-right:25px;
+  left: 0;
+  padding-right: 30px;
 }
 .balloon_r .faceicon{
   order:2 !important;
