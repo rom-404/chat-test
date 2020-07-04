@@ -18,6 +18,7 @@
 .balloon6 .chatting {
   width: 100%;
   text-align: left;
+  background:#00ff00;
 }
 .says {
   display: inline-block;
