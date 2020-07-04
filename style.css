@@ -1,5 +1,5 @@
 
-/*以下、②左側のコメント*/
+
 .balloon6 {
   width: 100%;
   margin: 10px 0;
@@ -16,6 +16,10 @@
   width: 40px;
   height: auto;
   border-radius: 50%;
+}
+.balloon6 .username {
+  width: 40px;
+  height: auto;
 }
 .balloon6 .chatting {
   width: 100%;
@@ -46,7 +50,7 @@
   padding: 0;
 }
 
-/*以下、③右側の緑コメント*/
+
 .mycomment {
   margin: 10px 0;
 }
