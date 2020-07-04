@@ -50,6 +50,7 @@
 
 
 .mycomment {
+  float: right;
   margin: 10px 0;
 }
 .mycomment p {
