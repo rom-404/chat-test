@@ -50,8 +50,8 @@
 
 
 .mycomment {
-  float: right;
   margin: 10px 0;
+  margin-right: auto;
 }
 .mycomment p {
   display: inline-block;
