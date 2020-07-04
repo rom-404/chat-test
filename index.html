@@ -61,7 +61,7 @@
       // 既存メッセージを表示
       messagesRef.on('child_added', function(snapshot) { // ... 3
         var msg = snapshot.val();
-        $('<div class="balloon6"></div>').html('<div class="faceicon"><img src="' + msg.image + '" alt="" ></div><div class="chatting"><div class="says"><p>' + msg.body.replace(/\n/g, "<br>") + '</p><div><div>').prependTo('#messages');
+        $('<div class="balloon6"></div>').html('<div class="faceicon"><img src="' + msg.image + '" alt="" ></div><div class="chatting"><div class=username>'+msg.name+'</div><div class="says"><p>' + msg.body.replace(/\n/g, "<br>") + '</p><div><div>').prependTo('#messages');
       });
  
       $('#send').click(function() {
