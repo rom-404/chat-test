@@ -15,7 +15,10 @@
    height: auto;
    border-radius: 50%;
  }
- .balloon6 .chatting {font-size: small;position: relative;width: 62%;display:inline-block;vertical-align:  top;margin-left: 4%;margin-right: 18%;margin-bottom: 10px;box-sizing: border-box;}
+ .balloon6 .chatting {
+   width: 100%;
+   text-align: left;
+ }
  .says {
    display: inline-block;
    position: relative; 
