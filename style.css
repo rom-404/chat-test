@@ -16,7 +16,7 @@
    border-radius: 50%;
  }
  .balloon6 .chatting {
-   display: inline-block;
+   float: left;
    width: 100%;
    text-align: left;
  }
