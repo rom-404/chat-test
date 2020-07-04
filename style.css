@@ -17,10 +17,12 @@
   top: 0;
 }
 .balloon_r .faceicon{
+  display: inline-block;
   right: 0;
   padding-left: 30px;
 }
 .balloon_l .faceicon{
+  display: inline-block;
   left: 0;
   padding-right: 30px;
 }
@@ -28,6 +30,7 @@
   order:2 !important;
 }
 .says {
+  display: inline-block;
   max-width:500px; /*最大幅は任意*/
   display: flex;
   flex-wrap: wrap;
