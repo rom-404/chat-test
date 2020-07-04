@@ -19,6 +19,10 @@
   width: 100%;
   text-align: left;
 }
+.username {
+  margin: 0 0 0 50px;
+  font-size:6px;
+}
 .says {
   display: inline-block;
   position: relative; 
