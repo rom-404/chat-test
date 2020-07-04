@@ -3,16 +3,16 @@
   <head>
     <meta charset="utf-8" />
     <title>chat-test3</title>
+    <link rel=”stylesheet” href=”css/style.css”>
   </head>
   <body>
     <button id="login">googleアカウントで参加</button>
     <div>
-      <h3 id="name"></h3>
       <textarea id="message" placeholder="メッセージ" rows="4" cols="40"></textarea>
       <button id="send">投稿</button>
     </div>
-    <ul id="messages">
-    </ul>
+    <div id="messages">
+    </div>
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
@@ -43,12 +43,13 @@
       var messagesRef = firebase.database().ref().child('massages');// ... 2
       var provider = new firebase.auth.GoogleAuthProvider();
       var user = firebase.auth().currentUser;
+      var myname;
       $("#send").hide();
       $("#message").hide();
 
       firebase.auth().getRedirectResult().then(function(result) {
         var user=result.user;
-        $("#name").val(user.displayName);
+        myname = user.displayName;
         $("#login").hide();
         $("#send").show();
         $("#message").show();
@@ -57,13 +58,13 @@
       // 既存メッセージを表示
       messagesRef.on('child_added', function(snapshot) { // ... 3
         var msg = snapshot.val();
-        $('<li>').html(msg.name + ':<br><font size=\"1\">' + msg.body.replace(/\n/g, '<br>')+"</font><br>").prependTo('#messages');
+        $('<div class="balloon_l"></div>').html('<div class="faceicon"><img src="https://stand-4u.com/stand-4u/wp-content/uploads/2019/09/s4man.png" alt="" ></div><p class="says">${msg.body.replace(/\n/g, "<br>")}</p>').prependTo('#messages');
       });
  
       $('#send').click(function() {
         // 新規メッセージを投稿
         messagesRef.push({ // ... 4
-          name: $('#name').val(),
+          name: myname,
           body: $('#message').val()
         });
       });
