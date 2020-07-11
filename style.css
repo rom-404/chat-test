@@ -47,10 +47,7 @@
   margin: 0;
   padding: 0;
 }
-.says img {
-  width: 30%;
-  height: auto;
-}
+
 
 
 .mycomment {
@@ -65,10 +62,6 @@
   background: #30e852;
   font-size: 15px;
   margin-right: auto;
-}
-.mycomment img {
-  width: 30%;
-  height: auto;
 }
 
 .mycomment p:after {
