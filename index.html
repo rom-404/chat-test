@@ -58,6 +58,13 @@
         $("#message").show();
       });
  
+      firebase.auth().onAuthStateChanged((user) => { 
+        myname = user.displayName;
+        myimage = user.photoURL.replace("_normal","");
+        $("#login").hide();
+        $("#send").show();
+        $("#message").show();
+      });
       // 既存メッセージを表示
       messagesRef.on('child_added', function(snapshot) { // ... 3
         var msg = snapshot.val();
