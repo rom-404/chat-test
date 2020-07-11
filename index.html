@@ -73,13 +73,13 @@
  
       $('#send').click(function() {
         // 新規メッセージを投稿
-      if(fire != "none"){
+      //if(fire != "none"){
         var storageRef = firebase.storage().ref('img/' + getUniqueStr());
         storageRef.put(file);
-        var obj = document.getElementById("myfile");
+     /*   var obj = document.getElementById("myfile");
         obj.value = "";
         file="none";
-      }
+      }*/
         messagesRef.push({ // ... 4
           name: myname,
           body: $('#message').val(),
