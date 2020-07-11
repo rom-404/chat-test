@@ -46,8 +46,8 @@
       var user = firebase.auth().currentUser;
       var myname;
       var myimage="none";
-      $("#send").hide();
-      $("#message").hide();
+      //$("#send").hide();
+      //$("#message").hide();
 
       firebase.auth().getRedirectResult().then(function(result) {
         var user=result.user;
