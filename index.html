@@ -71,7 +71,7 @@
          if(msg.imageurl=="none"){
            $('<div class="mycomment"></div>').html('<p>' + msg.body.replace(/\n/g, "<br>") + '</p>').prependTo('#messages');
          }else{
-           $('<div class="mycomment"></div>').html('<img src="'+msg.imageurl+'" width="'+String(300)+'"/>').prependTo('#messages');
+           $('<div class="mycomment"></div>').html('<p><img src="'+msg.imageurl+'" width="'+String(300)+'"/></p>').prependTo('#messages');
          }
         }else{
           if(msg.imageurl=="none"){
