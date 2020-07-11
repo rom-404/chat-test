@@ -103,7 +103,7 @@
           return false;
         }
  　　　　var storageRef = firebase.storage().ref('img/' + getUniqueStr());
-        storageRef.put(file).then(()=>{
+        storageRef.put(file).then(function() {
           storageRef.getDownloadURL().then(function(url) {
             messagesRef.push({ // ... 4
               name: myname,
@@ -120,7 +120,7 @@
       function getUniqueStr(myStrong){
         var strong = 1000;
         if (myStrong) strong = myStrong;
-        return new Date().getTime().toString(16)  + Math.floor(strong*Math.random()).toString(16)
+        return new Date().getTime().toString(16)  + Math.floor(strong*Math.random()).toString(16);
       }
     </script>
 　　
