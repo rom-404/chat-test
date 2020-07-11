@@ -90,7 +90,8 @@
           myimage: myimage,
           imageurl: "none"
         });
-        $('#message').val()="";
+        var obj = document.getElementById("");
+        obj.value = "";
       });
       $('#login').click(function() {
         firebase.auth().signInWithRedirect(provider);
