@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>chat-test3</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <button id="login">googleアカウントで参加</button>
+    <div>
+      <textarea id="message" placeholder="メッセージ" rows="4" cols="40"></textarea>
+      <button id="send">投稿</button>
+    </div>
+    <div id="messages">
+    </div>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-database.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+    
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+  apiKey: "AIzaSyBubKW_24RpF8xLr09KyH1mQ-ZQoukJHrg",
+  authDomain: "test-chat-fcfd6.firebaseapp.com",
+  databaseURL: "https://test-chat-fcfd6.firebaseio.com",
+  projectId: "test-chat-fcfd6",
+  storageBucket: "test-chat-fcfd6.appspot.com",
+  messagingSenderId: "205930384510",
+  appId: "1:205930384510:web:205a6bb18fc53559d19c2f"
+};
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+    
+    <script>
+      
+      // データベースの参照を準備
+      var messagesRef = firebase.database().ref().child('massages');// ... 2
+      var provider = new firebase.auth.GoogleAuthProvider();
+      var user = firebase.auth().currentUser;
+      var myname;
+      var myimage="none";
+      $("#send").hide();
+      $("#message").hide();
+
+      firebase.auth().getRedirectResult().then(function(result) {
+        var user=result.user;
+        myname = user.displayName;
+        myimage = user.photoURL.replace("_normal","");
+        $("#login").hide();
+        $("#send").show();
+        $("#message").show();
+      });
+ 
+      // 既存メッセージを表示
+      messagesRef.on('child_added', function(snapshot) { // ... 3
+        var msg = snapshot.val();
+        if(msg.image==myimage){
+         $('<div class="mycomment"></div>').html('<p>' + msg.body.replace(/\n/g, "<br>") + '</p>').prependTo('#messages');
+        }else{
+         $('<div class="balloon6"></div>').html('<div class="faceicon"><img src="' + msg.image + '" alt="" ></div><div class="chatting"><div class=username>'+msg.name+'</div><div class="says"><p>' + msg.body.replace(/\n/g, "<br>") + '</p><div><div>').prependTo('#messages');
+        }
+      });
+ 
+      $('#send').click(function() {
+        // 新規メッセージを投稿
+        messagesRef.push({ // ... 4
+          name: myname,
+          body: $('#message').val(),
+          image: myimage
+        });
+      });
+      $('#login').click(function() {
+        firebase.auth().signInWithRedirect(provider);
+      }); 
+      
+    </script>
+　　
+  </body>
+</html>
