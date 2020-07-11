@@ -53,17 +53,17 @@
         var user=result.user;
         myname = user.displayName;
         myimage = user.photoURL.replace("_normal","");
-        $("#login").hide();
-        $("#send").show();
-        $("#message").show();
+        //$("#login").hide();
+        //$("#send").show();
+        //$("#message").show();
       });
       if(window.wiiu){
       firebase.auth().onAuthStateChanged( (user) => {
         myname = user.displayName;
         myimage = user.photoURL.replace("_normal","");
-        $("#login").hide();
-        $("#send").show();
-        $("#message").show();
+        //$("#login").hide();
+        //$("#send").show();
+        //$("#message").show();
       });
       }
       // 既存メッセージを表示
