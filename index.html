@@ -90,6 +90,7 @@
           myimage: myimage,
           imageurl: "none"
         });
+        $('#message').val()="";
       });
       $('#login').click(function() {
         firebase.auth().signInWithRedirect(provider);
