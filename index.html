@@ -49,7 +49,7 @@
       $("#send").hide();
       $("#message").hide();
 
-      firebase.auth().getRedirectResult().then(function(result) {
+      firebase.auth().onAuthStateChanged().then(function(result) {
         var user=result.user;
         myname = user.displayName;
         myimage = user.photoURL.replace("_normal","");
