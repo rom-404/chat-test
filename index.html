@@ -92,14 +92,15 @@
           return false;
         }
  　　　　var storageRef = firebase.storage().ref('img/' + getUniqueStr());
-        storageRef.put(file);
-        storageRef.getDownloadURL().then(function(url) {
-          messagesRef.push({ // ... 4
-          name: myname,
-          body: "",
-          myimage: myimage,
-          imageurl: url
-        });
+        storageRef.put(file).then(()=>{
+          storageRef.getDownloadURL().then(function(url) {
+            messagesRef.push({ // ... 4
+              name: myname,
+              body: "",
+              myimage: myimage,
+              imageurl: url
+            });
+          });
         });
         var obj = document.getElementById("myfile");
         obj.value = "";
