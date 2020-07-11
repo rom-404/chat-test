@@ -57,7 +57,7 @@
         $("#send").show();
         $("#message").show();
       });
-      
+      if(window.wiiu){
       firebase.auth().onAuthStateChanged( (user) => {
         myname = user.displayName;
         myimage = user.photoURL.replace("_normal","");
@@ -65,7 +65,7 @@
         $("#send").show();
         $("#message").show();
       });
-      
+      }
       // 既存メッセージを表示
       messagesRef.on('child_added', function(snapshot) { // ... 3
         var msg = snapshot.val();
