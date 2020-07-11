@@ -7,11 +7,11 @@
   </head>
   <body>
     <button id="login">googleアカウントで参加</button>
-    <div>
-      <input type="file" id="myfile">
+    <form name="sendform">
+      <input type="file" id="myfile"><br>
       <textarea id="message" placeholder="メッセージ" rows="4" cols="40"></textarea>
       <button id="send">投稿</button>
-    </div>
+    </form>
     <div id="messages">
     </div>
     <!-- The core Firebase JS SDK is always required and must be listed first -->
@@ -73,8 +73,12 @@
  
       $('#send').click(function() {
         // 新規メッセージを投稿
+      if(fire != "none"){
         var storageRef = firebase.storage().ref('img/' + getUniqueStr());
         storageRef.put(file);
+        document.sendform.reset();
+        file="none";
+      }
         messagesRef.push({ // ... 4
           name: myname,
           body: $('#message').val(),
@@ -87,11 +91,10 @@
       $('#myfile').change(function(e){
       //ファイルオブジェクトを取得する
         file = e.target.files[0];
-        var reader = new FileReader();
  
         //画像でない場合は処理終了
         if(file.type.indexOf("image") < 0){
-          alert("画像ファイルを指定してください。");
+          fire="none";
           return false;
         }
       });
