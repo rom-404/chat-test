@@ -51,6 +51,8 @@
       var file="none";
       $("#send").hide();
       $("#message").hide();
+      $("#myfile").hide();
+      
 
       firebase.auth().getRedirectResult().then(function(result) {
         var user=result.user;
@@ -59,15 +61,24 @@
         $("#login").hide();
         $("#send").show();
         $("#message").show();
+        $("#myfile").show();
       });
  
       // 既存メッセージを表示
       messagesRef.on('child_added', function(snapshot) { // ... 3
         var msg = snapshot.val();
         if(msg.image==myimage){
-         $('<div class="mycomment"></div>').html('<p>' + msg.body.replace(/\n/g, "<br>") + '</p>').prependTo('#messages');
+         if(msg.imageurl=="none"){
+           $('<div class="mycomment"></div>').html('<img src="'+msg.imageurl+'"/>').prependTo('#messages');
+         }else{
+           $('<div class="mycomment"></div>').html('<p>' + msg.body.replace(/\n/g, "<br>") + '</p>').prependTo('#messages');
+         }
         }else{
-         $('<div class="balloon6"></div>').html('<div class="faceicon"><img src="' + msg.myimage + '" alt="" ></div><div class="chatting"><div class=username>'+msg.name+'</div><div class="says"><p>' + msg.body.replace(/\n/g, "<br>") + '</p><div><div>').prependTo('#messages');
+          if(msg.imageurl=="none"){
+            $('<div class="balloon6"></div>').html('<div class="faceicon"><img src="' + msg.myimage + '" alt="" ></div><div class="chatting"><div class=username>'+msg.name+'</div><div class="says"><p>' + msg.body.replace(/\n/g, "<br>") + '</p><div><div>').prependTo('#messages');
+          }else{
+            $('<div class="balloon6"></div>').html('<div class="faceicon"><img src="' + msg.myimage + '" alt="" ></div><div class="chatting"><div class=username>'+msg.name+'</div><div class="says"><img src="'+msg.imageurl+'"/><div><div>').prependTo('#messages');
+          }
         }
       });
  
