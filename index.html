@@ -69,9 +69,9 @@
         var msg = snapshot.val();
         if(msg.myimage==myimage){
          if(msg.imageurl=="none"){
-           $('<div class="mycomment"></div>').html('<img src="'+msg.imageurl+'" width="'+String(300)+'"/>').prependTo('#messages');
-         }else{
            $('<div class="mycomment"></div>').html('<p>' + msg.body.replace(/\n/g, "<br>") + '</p>').prependTo('#messages');
+         }else{
+           $('<div class="mycomment"></div>').html('<img src="'+msg.imageurl+'" width="'+String(300)+'"/>').prependTo('#messages');
          }
         }else{
           if(msg.imageurl=="none"){
