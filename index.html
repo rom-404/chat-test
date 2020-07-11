@@ -76,7 +76,7 @@
       if(fire != "none"){
         var storageRef = firebase.storage().ref('img/' + getUniqueStr());
         storageRef.put(file);
-        document.sendform.reset();
+        $('#myfile').value = "";
         file="none";
       }
         messagesRef.push({ // ... 4
