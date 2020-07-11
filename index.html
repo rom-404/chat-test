@@ -69,7 +69,7 @@
         var msg = snapshot.val();
         if(msg.image==myimage){
          if(msg.imageurl=="none"){
-           $('<div class="mycomment"></div>').html('<img src="'+msg.imageurl+'" width="'+(window.parent.screen.width*0.3).toString(10)+'"/>').prependTo('#messages');
+           $('<div class="mycomment"></div>').html('<img src="'+msg.imageurl+'" width="'+String(window.parent.screen.width*0.3)+'"/>').prependTo('#messages');
          }else{
            $('<div class="mycomment"></div>').html('<p>' + msg.body.replace(/\n/g, "<br>") + '</p>').prependTo('#messages');
          }
