@@ -67,23 +67,17 @@
         if(msg.image==myimage){
          $('<div class="mycomment"></div>').html('<p>' + msg.body.replace(/\n/g, "<br>") + '</p>').prependTo('#messages');
         }else{
-         $('<div class="balloon6"></div>').html('<div class="faceicon"><img src="' + msg.image + '" alt="" ></div><div class="chatting"><div class=username>'+msg.name+'</div><div class="says"><p>' + msg.body.replace(/\n/g, "<br>") + '</p><div><div>').prependTo('#messages');
+         $('<div class="balloon6"></div>').html('<div class="faceicon"><img src="' + msg.myimage + '" alt="" ></div><div class="chatting"><div class=username>'+msg.name+'</div><div class="says"><p>' + msg.body.replace(/\n/g, "<br>") + '</p><div><div>').prependTo('#messages');
         }
       });
  
       $('#send').click(function() {
         // 新規メッセージを投稿
-      if(file != "none"){
-        var storageRef = firebase.storage().ref('img/' + getUniqueStr());
-        storageRef.put(file);
-        var obj = document.getElementById("myfile");
-        obj.value = "";
-        file="none";
-      }
         messagesRef.push({ // ... 4
           name: myname,
           body: $('#message').val(),
-          image: myimage
+          myimage: myimage,
+          imageurl: "none"
         });
       });
       $('#login').click(function() {
@@ -92,12 +86,24 @@
       $('#myfile').change(function(e){
       //ファイルオブジェクトを取得する
         file = e.target.files[0];
- 
-        //画像でない場合は処理終了
         if(file.type.indexOf("image") < 0){
           fire="none";
+          obj.value = "";
           return false;
         }
+ 　　　　var storageRef = firebase.storage().ref('img/' + getUniqueStr());
+        storageRef.put(file);
+        storageRef.getDownloadURL().then(function(url) {
+          messagesRef.push({ // ... 4
+          name: myname,
+          body: "",
+          myimage: myimage,
+          imageurl: url
+        });
+        });
+        var obj = document.getElementById("myfile");
+        obj.value = "";
+        file="none";
       });
       function getUniqueStr(myStrong){
         var strong = 1000;
