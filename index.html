@@ -69,29 +69,31 @@
         var msg = snapshot.val();
         if(msg.myimage==myimage){
          if(msg.imageurl=="none"){
-           $('<div class="mycomment"></div>').html('<p>' + msg.body.replace(/\n/g, "<br>") + '</p>').prependTo('#messages');
+           $('<div class="mycomment"></div>').html('<p>' + msgcnv(msg.body) + '</p>').prependTo('#messages');
          }else{
            $('<div class="mycomment"></div>').html('<p><img src="'+msg.imageurl+'" width="'+String(300)+'"/></p>').prependTo('#messages');
          }
         }else{
           if(msg.imageurl=="none"){
-            $('<div class="balloon6"></div>').html('<div class="faceicon"><img src="' + msg.myimage + '" alt="" ></div><div class="chatting"><div class=username>'+msg.name+'</div><div class="says"><p>' + msg.body.replace(/\n/g, "<br>") + '</p><div><div>').prependTo('#messages');
+            $('<div class="balloon6"></div>').html('<div class="faceicon"><img src="' + msg.myimage + '" alt="" ></div><div class="chatting"><div class=username>'+msgcnv(msg.name)+'</div><div class="says"><p>' + msgcnvf(msg.body) + '</p><div><div>').prependTo('#messages');
           }else{
-            $('<div class="balloon6"></div>').html('<div class="faceicon"><img src="' + msg.myimage + '" alt="" ></div><div class="chatting"><div class=username>'+msg.name+'</div><div class="says"><img src="'+msg.imageurl+'" width="'+String(300)+'"/><div><div>').prependTo('#messages');
+            $('<div class="balloon6"></div>').html('<div class="faceicon"><img src="' + msg.myimage + '" alt="" ></div><div class="chatting"><div class=username>'+msgcnv(msg.name)+'</div><div class="says"><img src="'+msg.imageurl+'" width="'+String(300)+'"/><div><div>').prependTo('#messages');
           }
         }
       });
  
       $('#send').click(function() {
         // 新規メッセージを投稿
-        messagesRef.push({ // ... 4
-          name: myname,
-          body: $('#message').val(),
-          myimage: myimage,
-          imageurl: "none"
-        });
-        var obj = document.getElementById("message");
-        obj.value = "";
+        if($('#message').val()==""){
+         messagesRef.push({ // ... 4
+           name: myname,
+           body: $('#message').val(),
+           myimage: myimage,
+           imageurl: "none"
+         });
+         var obj = document.getElementById("message");
+         obj.value = "";
+        }
       });
       $('#login').click(function() {
         firebase.auth().signInWithRedirect(provider);
@@ -124,6 +126,14 @@
         if (myStrong) strong = myStrong;
         return new Date().getTime().toString(16)  + Math.floor(strong*Math.random()).toString(16);
       }
+      function msgcnv(str) {
+       var regexp_url = /((h?)(ttps?:\/\/[a-zA-Z0-9.\-_@:/~?%&;=+#',()*!]+))/g; // ']))/;
+       var regexp_makeLink = function(all, url, h, href) {
+       return '<a href="h' + href + '">' + url + '</a>';
+      }
+
+    return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;').replace(/\n/g, "<br>").replace(regexp_url, regexp_makeLink);
+}
     </script>
 　　
   </body>
