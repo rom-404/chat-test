@@ -91,7 +91,7 @@
            body: $('#message').val(),
            myimage: myimage,
            imageurl: "none",
-           daytime:firebase.firestore.FieldValue.serverTimestamp()
+           daytime:firebase.firestore.FieldValue.serverTimestamp().toDate()
          });
          var obj = document.getElementById("message");
          obj.value = "";
@@ -116,7 +116,7 @@
               body: "",
               myimage: myimage,
               imageurl: url,
-              daytime:firebase.firestore.FieldValue.serverTimestamp()
+              daytime:firebase.firestore.FieldValue.serverTimestamp().toDate()
             });
           });
         });
