@@ -76,7 +76,7 @@
          }
         }else{
           if(msg.imageurl=="none"){
-            $('<div class="balloon6"></div>').html('<div class="faceicon"><img src="' + msg.myimage + '" alt="" ></div><div class="chatting"><div class=username>'+msgcnv(msg.name)+'</div><div class="says"><p>' + msgcnv(msg.body) + '</p></div><div class="daytime"'+msg.daytime.toLocaleString()+'></div></div>').prependTo('#messages');
+            $('<div class="balloon6"></div>').html('<div class="faceicon"><img src="' + msg.myimage + '" alt="" ></div><div class="chatting"><div class=username>'+msgcnv(msg.name)+'</div><div class="says"><p>' + msgcnv(msg.body) + '</p></div><div class="daytime"'+msg.daytime.toDate().toLocaleString()+'></div></div>').prependTo('#messages');
           }else{
             $('<div class="balloon6"></div>').html('<div class="faceicon"><img src="' + msg.myimage + '" alt="" ></div><div class="chatting"><div class=username>'+msgcnv(msg.name)+'</div><div class="says"><img src="'+msg.imageurl+'" width="'+String(300)+'"/></div><div class="daytime"'+msg.daytime.toLocaleString()+'></div></div>').prependTo('#messages');
           }
@@ -91,7 +91,7 @@
            body: $('#message').val(),
            myimage: myimage,
            imageurl: "none",
-           daytime:firebase.firestore.FieldValue.serverTimestamp().toDate()
+           daytime:firebase.firestore.FieldValue.serverTimestamp()
          });
          var obj = document.getElementById("message");
          obj.value = "";
@@ -116,7 +116,7 @@
               body: "",
               myimage: myimage,
               imageurl: url,
-              daytime:firebase.firestore.FieldValue.serverTimestamp().toDate()
+              daytime:firebase.firestore.FieldValue.serverTimestamp()
             });
           });
         });
