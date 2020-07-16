@@ -89,8 +89,7 @@
            name: myname,
            body: $('#message').val(),
            myimage: myimage,
-           imageurl: "none",
-           daytime: new Date(xhr.getResponseHeader('Date'))
+           imageurl: "none"
          });
          var obj = document.getElementById("message");
          obj.value = "";
@@ -114,8 +113,7 @@
               name: myname,
               body: "",
               myimage: myimage,
-              imageurl: url,
-              daytime: new Date(xhr.getResponseHeader('Date'))
+              imageurl: url
             });
           });
         });
