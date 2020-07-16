@@ -84,7 +84,7 @@
  
       $('#send').click(function() {
         // 新規メッセージを投稿
-        if($('#message').val()==""){
+        if($('#message').val()!=""){
          messagesRef.push({ // ... 4
            name: myname,
            body: $('#message').val(),
