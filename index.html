@@ -68,19 +68,19 @@
       // 既存メッセージを表示
       messagesRef.on('child_added', function(snapshot) { // ... 3
         var msg = snapshot.val();
-        console.log(snapshot);
+        console.log(snapshot.key);
         var dateTime = new Date(msg.daytime * 1000);
         if(msg.myimage==myimage){
          if(msg.imageurl=="none"){
-           $('<div class="mycomment"></div>').html('<span>dateTime.toLocaleDateString() + " " + dateTime.toLocaleTimeString()</span><p>' + msgcnv(msg.body) + '</p>').prependTo('#messages');
+           $('<div class="mycomment"></div>').html('<span>'dateTime.toLocaleDateString() + " " + dateTime.toLocaleTimeString()'</span><p>' + msgcnv(msg.body) + '</p>').prependTo('#messages');
          }else{
-           $('<div class="mycomment"></div>').html('<span>dateTime.toLocaleDateString() + " " + dateTime.toLocaleTimeString()</span><p><img src="'+msg.imageurl+'" width="'+String(300)+'"/></p>').prependTo('#messages');
+           $('<div class="mycomment"></div>').html('<span>'dateTime.toLocaleDateString() + " " + dateTime.toLocaleTimeString()'</span><p><img src="'+msg.imageurl+'" width="'+String(300)+'"/></p>').prependTo('#messages');
          }
         }else{
           if(msg.imageurl=="none"){
-            $('<div class="balloon6"></div>').html('<div class="faceicon"><img src="' + msg.myimage + '" alt="" ></div><div class="chatting"><div class=username>'+msgcnv(msg.name)+'</div><div class="says"><p>' + msgcnv(msg.body) + '</p></div><span>dateTime.toLocaleDateString() + " " + dateTime.toLocaleTimeString()</span></div>').prependTo('#messages');
+            $('<div class="balloon6"></div>').html('<div class="faceicon"><img src="' + msg.myimage + '" alt="" ></div><div class="chatting"><div class=username>'+msgcnv(msg.name)+'</div><div class="says"><p>' + msgcnv(msg.body) + '</p></div><span>'dateTime.toLocaleDateString() + " " + dateTime.toLocaleTimeString()'</span></div>').prependTo('#messages');
           }else{
-            $('<div class="balloon6"></div>').html('<div class="faceicon"><img src="' + msg.myimage + '" alt="" ></div><div class="chatting"><div class=username>'+msgcnv(msg.name)+'</div><div class="says"><img src="'+msg.imageurl+'" width="'+String(300)+'"/></div><span>dateTime.toLocaleDateString() + " " + dateTime.toLocaleTimeString()</span></div>').prependTo('#messages');
+            $('<div class="balloon6"></div>').html('<div class="faceicon"><img src="' + msg.myimage + '" alt="" ></div><div class="chatting"><div class=username>'+msgcnv(msg.name)+'</div><div class="says"><img src="'+msg.imageurl+'" width="'+String(300)+'"/></div><span>'dateTime.toLocaleDateString() + " " + dateTime.toLocaleTimeString()'</span></div>').prependTo('#messages');
           }
         }
       });
