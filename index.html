@@ -68,6 +68,7 @@
       // 既存メッセージを表示
       messagesRef.on('child_added', function(snapshot) { // ... 3
         var msg = snapshot.val();
+        console.log(snapshot);
         let dateTime = new Date(msg.daytime * 1000);
         if(msg.myimage==myimage){
          if(msg.imageurl=="none"){
