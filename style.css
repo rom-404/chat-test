@@ -64,6 +64,7 @@
   background: #30e852;
   font-size: 15px;
   margin-right: auto;
+  text-align: right;
 }
 
 .mycomment p:after {
