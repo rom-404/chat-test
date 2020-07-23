@@ -70,15 +70,15 @@
         var msg = snapshot.val();
         if(msg.myimage==myimage){
          if(msg.imageurl=="none"){
-           $('<div class="mycomment"></div>').html('<p>' + msgcnv(msg.body) + '</p><span>test</span>').prependTo('#messages');
+           $('<div class="mycomment"></div>').html('<span>test</span><p>' + msgcnv(msg.body) + '</p>').prependTo('#messages');
          }else{
-           $('<div class="mycomment"></div>').html('<p><img src="'+msg.imageurl+'" width="'+String(300)+'"/></p>').prependTo('#messages');
+           $('<div class="mycomment"></div>').html('<span>test</span><p><img src="'+msg.imageurl+'" width="'+String(300)+'"/></p>').prependTo('#messages');
          }
         }else{
           if(msg.imageurl=="none"){
-            $('<div class="balloon6"></div>').html('<div class="faceicon"><img src="' + msg.myimage + '" alt="" ></div><div class="chatting"><div class=username>'+msgcnv(msg.name)+'</div><div class="says"><p>' + msgcnv(msg.body) + '</p></div></div>').prependTo('#messages');
+            $('<div class="balloon6"></div>').html('<div class="faceicon"><img src="' + msg.myimage + '" alt="" ></div><div class="chatting"><div class=username>'+msgcnv(msg.name)+'</div><div class="says"><p>' + msgcnv(msg.body) + '</p></div></div><span>test</span>').prependTo('#messages');
           }else{
-            $('<div class="balloon6"></div>').html('<div class="faceicon"><img src="' + msg.myimage + '" alt="" ></div><div class="chatting"><div class=username>'+msgcnv(msg.name)+'</div><div class="says"><img src="'+msg.imageurl+'" width="'+String(300)+'"/></div></div>').prependTo('#messages');
+            $('<div class="balloon6"></div>').html('<div class="faceicon"><img src="' + msg.myimage + '" alt="" ></div><div class="chatting"><div class=username>'+msgcnv(msg.name)+'</div><div class="says"><img src="'+msg.imageurl+'" width="'+String(300)+'"/></div></div><span>test</span>').prependTo('#messages');
           }
         }
       });
