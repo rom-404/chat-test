@@ -69,7 +69,7 @@
       messagesRef.on('child_added', function(snapshot) { // ... 3
         var msg = snapshot.val();
         console.log(snapshot.key);
-        let diff=firebase.database.ServerValue.TIMESTAMP-msg.daytime;
+        var diff = firebase.database.ServerValue.TIMESTAMP - msg.daytime;
         if(msg.myimage==myimage){
          if(msg.imageurl=="none"){
            $('<div class="mycomment"></div>').html('<span>' + displaytime(diff) + ' </span><p>' + msgcnv(msg.body) + '</p>').prependTo('#messages');
