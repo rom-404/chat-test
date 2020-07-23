@@ -69,18 +69,18 @@
       messagesRef.on('child_added', function(snapshot) { // ... 3
         var msg = snapshot.val();
         console.log(snapshot.key);
-        var dateTime = new Date(msg.daytime);
+        let diff=firebase.database.ServerValue.TIMESTAMP-msg.daytime;
         if(msg.myimage==myimage){
          if(msg.imageurl=="none"){
-           $('<div class="mycomment"></div>').html('<span>' + dateTime.toLocaleTimeString() + ' </span><p>' + msgcnv(msg.body) + '</p>').prependTo('#messages');
+           $('<div class="mycomment"></div>').html('<span>' + displaytime(diff) + ' </span><p>' + msgcnv(msg.body) + '</p>').prependTo('#messages');
          }else{
-           $('<div class="mycomment"></div>').html('<span>' + dateTime.toLocaleTimeString() + ' </span><p><img src="'+msg.imageurl+'" width="'+String(300)+'"/></p>').prependTo('#messages');
+           $('<div class="mycomment"></div>').html('<span>' + displaytime(diff) + ' </span><p><img src="'+msg.imageurl+'" width="'+String(300)+'"/></p>').prependTo('#messages');
          }
         }else{
           if(msg.imageurl=="none"){
-            $('<div class="balloon6"></div>').html('<div class="faceicon"><img src="' + msg.myimage + '" alt="" ></div><div class="chatting"><div class=username>'+msgcnv(msg.name)+'</div><div class="says"><p>' + msgcnv(msg.body) + '</p></div><span> ' + dateTime.toLocaleTimeString() + '</span></div>').prependTo('#messages');
+            $('<div class="balloon6"></div>').html('<div class="faceicon"><img src="' + msg.myimage + '" alt="" ></div><div class="chatting"><div class=username>'+msgcnv(msg.name)+'</div><div class="says"><p>' + msgcnv(msg.body) + '</p></div><span> ' + displaytime(diff) + '</span></div>').prependTo('#messages');
           }else{
-            $('<div class="balloon6"></div>').html('<div class="faceicon"><img src="' + msg.myimage + '" alt="" ></div><div class="chatting"><div class=username>'+msgcnv(msg.name)+'</div><div class="says"><img src="'+msg.imageurl+'" width="'+String(300)+'"/></div><span> ' + dateTime.toLocaleTimeString() + '</span></div>').prependTo('#messages');
+            $('<div class="balloon6"></div>').html('<div class="faceicon"><img src="' + msg.myimage + '" alt="" ></div><div class="chatting"><div class=username>'+msgcnv(msg.name)+'</div><div class="says"><img src="'+msg.imageurl+'" width="'+String(300)+'"/></div><span> ' + displaytime(diff) + '</span></div>').prependTo('#messages');
           }
         }
       });
@@ -139,6 +139,21 @@
 
        return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;').replace(/\x20/g, '&nbsp;').replace(/\n/g, "<br>").replace(regexp_url, regexp_makeLink);
       }
+      function displayTime(diff) {
+       var d = new Date(diff);
+
+       if (d.getUTCFullYear() - 1970) {
+         return d.getUTCFullYear() - 1970 + '年前'
+       } else if (d.getUTCMonth()) {
+         return d.getUTCMonth() + 'ヶ月前'
+       } else if (d.getUTCDate() - 1) {
+         return d.getUTCDate() - 1 + '日前'
+       } else if (d.getUTCHours()) {
+         return d.getUTCHours() + '時間前'
+       } else if (d.getUTCMinutes()) {
+         return d.getUTCMinutes() + '分前'
+       }
+     }
     </script>
 　　
   </body>
