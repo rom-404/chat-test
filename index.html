@@ -69,19 +69,18 @@
       messagesRef.on('child_added', function(snapshot) { // ... 3
         var msg = snapshot.val();
         console.log(snapshot.key);
-        var diff = firebase.database.ServerValue.TIMESTAMP - msg.daytime;
-        console.log(diff);
+        console.log(msg.daytime);
         if(msg.myimage==myimage){
          if(msg.imageurl=="none"){
-           $('<div class="mycomment"></div>').html('<span>' + displayTime(diff) + ' </span><p>' + msgcnv(msg.body) + '</p>').prependTo('#messages');
+           $('<div class="mycomment"></div>').html('<span>' + displayTime(msg.daytime) + ' </span><p>' + msgcnv(msg.body) + '</p>').prependTo('#messages');
          }else{
-           $('<div class="mycomment"></div>').html('<span>' + displayTime(diff) + ' </span><p><img src="'+msg.imageurl+'" width="'+String(300)+'"/></p>').prependTo('#messages');
+           $('<div class="mycomment"></div>').html('<span>' + displayTime(msg.daytime) + ' </span><p><img src="'+msg.imageurl+'" width="'+String(300)+'"/></p>').prependTo('#messages');
          }
         }else{
           if(msg.imageurl=="none"){
-            $('<div class="balloon6"></div>').html('<div class="faceicon"><img src="' + msg.myimage + '" alt="" ></div><div class="chatting"><div class=username>'+msgcnv(msg.name)+'</div><div class="says"><p>' + msgcnv(msg.body) + '</p></div><span> ' + displayTime(diff) + '</span></div>').prependTo('#messages');
+            $('<div class="balloon6"></div>').html('<div class="faceicon"><img src="' + msg.myimage + '" alt="" ></div><div class="chatting"><div class=username>'+msgcnv(msg.name)+'</div><div class="says"><p>' + msgcnv(msg.body) + '</p></div><span> ' + displayTime(msg.daytime) + '</span></div>').prependTo('#messages');
           }else{
-            $('<div class="balloon6"></div>').html('<div class="faceicon"><img src="' + msg.myimage + '" alt="" ></div><div class="chatting"><div class=username>'+msgcnv(msg.name)+'</div><div class="says"><img src="'+msg.imageurl+'" width="'+String(300)+'"/></div><span> ' + displayTime(diff) + '</span></div>').prependTo('#messages');
+            $('<div class="balloon6"></div>').html('<div class="faceicon"><img src="' + msg.myimage + '" alt="" ></div><div class="chatting"><div class=username>'+msgcnv(msg.name)+'</div><div class="says"><img src="'+msg.imageurl+'" width="'+String(300)+'"/></div><span> ' + displayTime(msg.daytime) + '</span></div>').prependTo('#messages');
           }
         }
       });
@@ -142,19 +141,8 @@
       }
       function displayTime(diff) {
        var d = new Date(diff);
-
-       if (d.getUTCFullYear() - 1970) {
-         return d.getUTCFullYear() - 1970 + '年前'
-       } else if (d.getUTCMonth()) {
-         return d.getUTCMonth() + 'ヶ月前'
-       } else if (d.getUTCDate() - 1) {
-         return d.getUTCDate() - 1 + '日前'
-       } else if (d.getUTCHours()) {
-         return d.getUTCHours() + '時間前'
-       } else if (d.getUTCMinutes()) {
-         return d.getUTCMinutes() + '分前'
-       }
-     }
+       return d.getHours()+":"+d.getMinutes() 
+      }
     </script>
 　　
   </body>
