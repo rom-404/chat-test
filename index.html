@@ -76,9 +76,9 @@
          }
         }else{
           if(msg.imageurl=="none"){
-            $('<div class="balloon6"></div>').html('<div class="faceicon"><img src="' + msg.myimage + '" alt="" ></div><div class="chatting"><div class=username>'+msgcnv(msg.name)+'</div><div class="says"><p>' + msgcnv(msg.body) + '</p></div></div><span>test</span>').prependTo('#messages');
+            $('<div class="balloon6"></div>').html('<div class="faceicon"><img src="' + msg.myimage + '" alt="" ></div><div class="chatting"><div class=username>'+msgcnv(msg.name)+'</div><div class="says"><p>' + msgcnv(msg.body) + '</p></div><span>test</span></div>').prependTo('#messages');
           }else{
-            $('<div class="balloon6"></div>').html('<div class="faceicon"><img src="' + msg.myimage + '" alt="" ></div><div class="chatting"><div class=username>'+msgcnv(msg.name)+'</div><div class="says"><img src="'+msg.imageurl+'" width="'+String(300)+'"/></div></div><span>test</span>').prependTo('#messages');
+            $('<div class="balloon6"></div>').html('<div class="faceicon"><img src="' + msg.myimage + '" alt="" ></div><div class="chatting"><div class=username>'+msgcnv(msg.name)+'</div><div class="says"><img src="'+msg.imageurl+'" width="'+String(300)+'"/></div><span>test</span></div>').prependTo('#messages');
           }
         }
       });
