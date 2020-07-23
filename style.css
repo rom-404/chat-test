@@ -53,6 +53,7 @@
 
 .mycomment {
   margin: 10px 0;
+  text-align: right;
 }
 .mycomment p {
   max-width: 40%;
