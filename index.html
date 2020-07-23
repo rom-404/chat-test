@@ -69,7 +69,7 @@
       messagesRef.on('child_added', function(snapshot) { // ... 3
         var msg = snapshot.val();
         console.log(snapshot);
-        let dateTime = new Date(msg.daytime * 1000);
+        var dateTime = new Date(msg.daytime * 1000);
         if(msg.myimage==myimage){
          if(msg.imageurl=="none"){
            $('<div class="mycomment"></div>').html('<span>dateTime.toLocaleDateString() + " " + dateTime.toLocaleTimeString()</span><p>' + msgcnv(msg.body) + '</p>').prependTo('#messages');
