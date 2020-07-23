@@ -53,10 +53,12 @@
 
 .mycomment {
   margin: 10px 0;
+  text-align:right;
 }
 .mycomment p {
   max-width: 40%;
   display: inline-block;
+  text-align:left;
   position: relative; 
   margin: 0 10px 0 0;
   padding: 8px;
