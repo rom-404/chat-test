@@ -70,6 +70,7 @@
         var msg = snapshot.val();
         console.log(snapshot.key);
         var diff = firebase.database.ServerValue.TIMESTAMP - msg.daytime;
+        console.log(diff);
         if(msg.myimage==myimage){
          if(msg.imageurl=="none"){
            $('<div class="mycomment"></div>').html('<span>' + displayTime(diff) + ' </span><p>' + msgcnv(msg.body) + '</p>').prependTo('#messages');
