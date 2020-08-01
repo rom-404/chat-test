@@ -140,8 +140,8 @@
        return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;').replace(/\x20/g, '&nbsp;').replace(/\n/g, "<br>").replace(regexp_url, regexp_makeLink);
       }
       function displayTime(diff) {
-       var d = new Date(diff);
-       return (d.getHours()-5+24)%24+":"+d.getMinutes() 
+       var d = new Date(diff+1000*60*60*5);
+       return (d.getHours()+":"+d.getMinutes())
       }
     </script>
 　　
