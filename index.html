@@ -141,7 +141,7 @@
       }
       function displayTime(diff) {
        var d = new Date(diff);
-       return (d.getHours()+":"+d.getMinutes())
+       return (“00”+d.getHours()).slice(-2)+":"+(“00”+d.getMinutes()).slice(-2))
       }
     </script>
 　　
