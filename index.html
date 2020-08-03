@@ -98,7 +98,7 @@
          obj.value = "";
         }
       });
-      $('.mycomment').click(function() {
+      $(document).on('click','.mycomment', function(){
         var id =  $(this).attr("id");
         firebase.database().ref('massages').child(id).remove();
       }); 
