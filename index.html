@@ -71,9 +71,9 @@
         console.log(snapshot.key);
         if(msg.myimage==myimage){
          if(msg.imageurl=="none"){
-           $('<div class="mycomment" id="' + snapshot.key + '"></div>').html('<span class=time>' + displayTime(msg.daytime) + ' </span><p>' + msgcnv(msg.body) + '</p>').prependTo('#messages');
+           $('<div class="mycomment"></div>').html('<span class=time>' + displayTime(msg.daytime) + ' </span><p class="mymsg" id="' + snapshot.key + '">' + msgcnv(msg.body) + '</p>').prependTo('#messages');
          }else{
-           $('<div class="mycomment" id="' + snapshot.key + '"></div>').html('<span class=time>' + displayTime(msg.daytime) + ' </span><p><img src="'+msg.imageurl+'" width="'+String(300)+'"/></p>').prependTo('#messages');
+           $('<div class="mycomment"></div>').html('<span class=time>' + displayTime(msg.daytime) + ' </span><p class="mymsg" id="' + snapshot.key + '"><img src="'+msg.imageurl+'" width="'+String(300)+'"/></p>').prependTo('#messages');
          }
         }else{
           if(msg.imageurl=="none"){
@@ -98,10 +98,10 @@
          obj.value = "";
         }
       });
-      $(document).on('click','.mycomment', function(){
+      $(document).on('click','.mymsg', function(){
         var id =  $(this).attr("id");
         firebase.database().ref('massages').child(id).remove();
-        $(this).remove();
+        $(this).parent().remove();
       }); 
       $('#login').click(function() {
         firebase.auth().signInWithRedirect(provider);
